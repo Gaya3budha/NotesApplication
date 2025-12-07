@@ -1,0 +1,55 @@
+﻿@model IEnumerable<NotesApplication.Entities.Notes>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    // var highPriority = Model.Where(x => x.Priority == 'h').ToList();
+    // var mediumPriority = Model.Where(x => x.Priority == 'm').ToList();
+    // var lowPriority = Model.Where(x => x.Priority == 'l').ToList();
+    // int totalCount = highPriority.Count() + mediumPriority.Count() + lowPriority.Count();
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>High</th>
+            <th>Medium</th>
+            <th>Low </th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr>
+          <td>
+                @foreach(var item in Model.Where(x => x.Priority == 'h'))
+                {
+                    <a href="@Url.Action("Edit",new{NotesId=item.NotesId})" style="text-decoration:none">
+                    <p style="background-color:#da5552;cursor:pointer;color:white">@item.NotesDescription</p>
+                    </a>
+                }
+            </td>
+            <td>
+                @foreach (var item in Model.Where(x => x.Priority == 'm'))
+                {
+                    <a href="@Url.Action("Edit", new { NotesId = item.NotesId })" style="text-decoration:none">
+                        <p style="background-color:#f7b267;cursor:pointer;color:white">@item.NotesDescription</p>
+                    </a>
+                }
+            </td>
+            <td>
+                @foreach (var item in Model.Where(x => x.Priority == 'l'))
+                {
+                    <a href="@Url.Action("Edit", new { NotesId = item.NotesId })" style="text-decoration:none">
+                        <p style="background-color:#a3bf50;cursor:pointer;color:white">@item.NotesDescription</p>
+                    </a>
+                }
+            </td>
+      </tr>
+      
+
+    </tbody>
+</table>
+
+@* <td>
+    @Html.ActionLink("Edit", "Edit", new { NotesId = item.NotesId }) |
+    @Html.ActionLink("Delete", "Delete", new { NotesId = item.NotesId })
+</td> *@

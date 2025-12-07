@@ -1,0 +1,98 @@
+﻿@model NotesApplication.Entities.Notes
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Save Notes</h1>
+
+<hr />
+<div class="container">
+    <form asp-action="Create" method="post">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label asp-for="NotesDescription" class="control-label"></label>
+                    <textarea asp-for="NotesDescription" class="form-control"></textarea>
+                    <span asp-validation-for="NotesDescription" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label asp-for="Priority" class="control-label"></label>
+                    <select asp-for="Priority" class="form-control">
+                        <option value="">select</option>
+                        <option value="h">High</option>
+                        <option value="m">Medium</option>
+                        <option value="l">Low</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 align-content-center">
+                <div class="form-group  mt-2">
+                    @if (Model.NotesId != 0)
+                    {
+                        <button type="submit" asp-action="Edit" class="btn btn-warning">Update<img width="15" height="15" src="~/icons/edit.png" /></button>
+                        <button type="submit" asp-action="PostDelete" class="btn btn-danger" asp-route-notesid="@Model.NotesId"
+                                 onclick="return confirm('Are you sure to delete this notes?')">Delete
+                                 <img width="15" height="15" src="~/icons/delete.png" />
+                        </button>
+                    }
+                    else
+                    {
+                        <button type="submit" asp-action="Create" class="btn btn-primary">Create</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+@* <form asp-action=@(Model.NotesId==0 ? "Create" : "Edit") method="post">
+<div class="row">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input asp-for="NotesId" type="hidden" class="form-control" />
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="NotesDescription" class="control-label"></label>
+                <textarea asp-for="NotesDescription" class="form-control"></textarea>
+                <span asp-validation-for="NotesDescription" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Priority" class="control-label"></label>
+                <select asp-for="Priority" class="form-control">
+                    <option value="">select</option>
+                    <option value="h">High</option>
+                    <option value="m">Medium</option>
+                    <option value="l">Low</option>
+                </select>
+                <span asp-validation-for="Priority" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" value=@(Model.NotesId == 0 ? "Create" : "Update") class="btn btn-primary" />
+
+        </div>
+    </form>
+    @if (Model.NotesId != 0)
+    {
+        <form method="post" asp-action="PostDelete">
+            <input asp-for="NotesId" type="hidden" class="form-control" />
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+    }
+    </div>
+</div>
+</div> *@
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
