@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using NotesApplication.Entities;
+using NotesApplication.Models;
 
 namespace NotesApplication.Context
 {

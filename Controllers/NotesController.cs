@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NotesApplication.Context;
-using NotesApplication.Entities;
+using NotesApplication.Models;
 
 namespace NotesApplication.Controllers
 {
